@@ -1,11 +1,13 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import api from './api';
+import { MyContext } from "./Provider";
 
 export default function Home() {
+  const { setqaData   } = useContext(MyContext);
   const router = useRouter();
   const [data, setData] = useState("seema");
   const [text, setText] = useState("");
@@ -13,6 +15,10 @@ export default function Home() {
     const da = { text: text };
     try {
       const response = await api.post("/posts", {da});
+      const sstring = JSON.stringify(response)
+      console.log(typeof sstring)
+      setqaData(sstring);
+      router.push(`/QA`)
       console.log(response);
     } catch (error) {
       console.error("Error posting data:", error);

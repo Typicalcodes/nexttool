@@ -9,7 +9,6 @@ import { MyContext } from "./Provider";
 export default function Home() {
   const { setqaData   } = useContext(MyContext);
   const router = useRouter();
-  const [data, setData] = useState("seema");
   const [text, setText] = useState("");
   const handlesumbit = async () => {
     const da = { text: text };

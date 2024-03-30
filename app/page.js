@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
@@ -15,10 +15,10 @@ export default function Home() {
     try {
       const response = await api.post("/posts", {da});
       const sstring = JSON.stringify(response)
-      console.log(typeof sstring)
+
       setqaData(sstring);
       router.push(`/QA`)
-      console.log(response);
+
     } catch (error) {
       console.error("Error posting data:", error);
     }
@@ -26,9 +26,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-slate-100 flex  content-center justify-center h-screen w-screen  pt-36">
+      <div className="bg-slate-100 flex  content-center justify-center h-screen w-screen  pt-36" suppressHydrationWarning>
         <div className="flex flex-col">
-          <label type></label>
+          <label  ></label>
           <textarea
             style={{
               resize: "vertical",

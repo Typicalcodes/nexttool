@@ -1,28 +1,44 @@
-"use client";
+'use client';
 import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../Provider";
 
 export default function Qa() {
   const { Dataqa } = useContext(MyContext);
-  const [qaData, setqaData] = useState([]);
+  const [qaData, setqaData] = useState([{ question: "there is no question", answer: "there is no answer" }]);
 
   const [searchterm, setSearchterm] = useState("");
 
-  function handeleqaData(index) {
+  function handeleqaData(id) {
+    if (!qaData) return;
     const datww = [...qaData];
-    datww[index].selected = !datww[index].selected;
-    console.log(datww);
-    setqaData(datww);
+    const updatedQuestions = datww.map(item =>
+      item.id === id ? { ...item, selected: !item.selected } : item
+    );
+
+    setqaData(updatedQuestions);
   }
 
+  
   useEffect(() => {
+    ("real data",Dataqa)
+    if (Dataqa.length > 0){
     const jsonObject = JSON.parse(Dataqa);
-    console.log(Dataqa)
+   
     setqaData(jsonObject.data.questions_and_answers);
-    console.log(qaData);
+    };
   }, []);
+
   useEffect(() => {
-    console.log("scha", qaData);
+
+    if (Dataqa.length > 0){
+    const jsonObject = JSON.parse(Dataqa);
+   
+    setqaData(jsonObject.data.questions_and_answers);
+};
+  }, [Dataqa]);
+  
+  useEffect(() => {
+ 
   }, [qaData]);
 
   function downloadsearched() {
@@ -74,7 +90,7 @@ export default function Qa() {
   }
   return (
     <>
-      <div className="bg-slate-100 flex flex-col  content-center justify-center  px-96 pt-36">
+      <div className="bg-slate-100 flex flex-col  content-center justify-center px-20  md:px-96 md:pt-36" suppressHydrationWarning>
         <div className="flex justify-between">
           <button
             onClick={() => {
@@ -88,7 +104,7 @@ export default function Qa() {
             Download Searched Item
           </button>
         </div>
-        <div class="relative">
+        <div className="relative">
           <input
             type="text"
             value={searchterm}
@@ -96,7 +112,7 @@ export default function Qa() {
               setSearchterm(e.target.value);
             }}
             placeholder="Search Topics Like AI, Smartphone and Computer"
-            class="w-full py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+            className="w-full py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="flex flex-col">
@@ -117,7 +133,7 @@ export default function Qa() {
                   <div key={index}>
                     <div
                       onClick={() => {
-                        handeleqaData(index);
+                        handeleqaData(item.id);
                       }}
                       className={`p-2 m-1  cursor-pointer ${
                         item.selected == true

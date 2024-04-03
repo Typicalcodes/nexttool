@@ -1,6 +1,7 @@
 'use client';
 import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../Provider";
+import { LiaDownloadSolid } from "react-icons/lia";
 
 export default function Qa() {
   const { Dataqa } = useContext(MyContext);
@@ -90,18 +91,19 @@ export default function Qa() {
   }
   return (
     <>
-      <div className="bg-slate-100 flex flex-col  content-center justify-center px-20  md:px-96 md:pt-36" suppressHydrationWarning>
-        <div className="flex justify-between">
+      <div className=" flex flex-col  content-center justify-center px-20  md:px-96 md:pt-36" suppressHydrationWarning>
+        <div className="flex justify-between my-2">
           <button
             onClick={() => {
               handleSelectedDownload();
             }}
-            className="border p-2 text-green-400 border-green-700 self-start  my-2 bg-white  rounded-md focus:border-green-700 hover:bg-green-400 hover:text-white hover:font-bold "
+            className=" underline underline-offset-1 cursor-pointer text-lg font-bold flex gap-2 text-green-500 "
           >
-            Download Selected item
+           <LiaDownloadSolid size={24} className="font-bold"/> Download Selected item
           </button>
-          <button onClick={()=>{downloadsearched()}} className="border p-2 text-green-400 border-green-700 self-start  my-2 bg-white  rounded-md focus:border-green-700 hover:bg-green-400 hover:text-white hover:font-bold ">
-            Download Searched Item
+          <button onClick={()=>{downloadsearched()}}  className=" underline underline-offset-1 cursor-pointer text-lg font-bold flex gap-2 text-green-500 "
+          >
+           <LiaDownloadSolid size={24} className="font-bold"/>  Download Searched Item
           </button>
         </div>
         <div className="relative">

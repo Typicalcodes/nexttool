@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-slate-100 flex  content-center justify-center h-screen w-screen  pt-36" suppressHydrationWarning>
+      <div className=" flex  content-center justify-center h-screen w-screen  pt-36" suppressHydrationWarning>
         <div className="flex flex-col">
           <label  ></label>
           <textarea
